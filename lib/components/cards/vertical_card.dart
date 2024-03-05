@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:jikan_anime/models/anime.dart';
+import 'package:jikan_anime/routes/detail_screen.dart';
 
 class VCard extends StatefulWidget {
   const VCard({Key? key, required this.anime}) : super(key: key);
@@ -17,6 +18,33 @@ class _VCardState extends State<VCard> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(
+          context,
+          DetailScreen.routeName,
+          arguments: AnimeModel(
+              malId: widget.anime.malId,
+              title: widget.anime.title,
+              images: widget.anime.images,
+              titleJapanese: widget.anime.titleJapanese,
+              type: widget.anime.type,
+              episodes: widget.anime.episodes,
+              status: widget.anime.status,
+              rating: widget.anime.rating,
+              score: widget.anime.score,
+              scoredBy: widget.anime.scoredBy,
+              rank: widget.anime.rank,
+              popularity: widget.anime.popularity,
+              members: widget.anime.members,
+              synopsis: widget.anime.synopsis,
+              background: widget.anime.background,
+              season: widget.anime.season,
+              year: widget.anime.year,
+              genres: widget.anime.genres,
+              producers: widget.anime.producers,
+              studios: widget.anime.studios),
+        );
+      },
       onLongPress: () {
         setState(() {
           showInfo = true;

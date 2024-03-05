@@ -19,33 +19,32 @@ class AnimeModel {
   final String? background;
   final String? season;
   final int? year;
-  // final List<Demographic>? genres;
-  // final List<Demographic>? studios;
-  // final List<Demographic>? producers;
+  final List<Demographic>? genres;
+  final List<Demographic>? studios;
+  final List<Demographic>? producers;
 
-  AnimeModel({
-    this.id,
-    required this.malId,
-    required this.title,
-    required this.images,
-    required this.titleJapanese,
-    required this.type,
-    required this.episodes,
-    required this.status,
-    required this.rating,
-    required this.score,
-    required this.scoredBy,
-    required this.rank,
-    required this.popularity,
-    required this.members,
-    required this.synopsis,
-    required this.background,
-    required this.season,
-    required this.year,
-    // required this.genres,
-    // required this.producers,
-    // required this.studios
-  });
+  AnimeModel(
+      {this.id,
+      required this.malId,
+      required this.title,
+      required this.images,
+      required this.titleJapanese,
+      required this.type,
+      required this.episodes,
+      required this.status,
+      required this.rating,
+      required this.score,
+      required this.scoredBy,
+      required this.rank,
+      required this.popularity,
+      required this.members,
+      required this.synopsis,
+      required this.background,
+      required this.season,
+      required this.year,
+      required this.genres,
+      required this.producers,
+      required this.studios});
   UniqueKey? id = UniqueKey();
 
   // Factory method to create AnimeModel object from JSON data.
@@ -68,12 +67,12 @@ class AnimeModel {
       background: json['background'],
       season: json['season'],
       year: json['year'],
-      // genres: List<Demographic>.from(
-      //     json['genres'].map((x) => Demographic.fromJson(x))),
-      // producers: List<Demographic>.from(
-      //     json['producers'].map((x) => Demographic.fromJson(x))),
-      // studios: List<Demographic>.from(
-      //     json['studios'].map((x) => Demographic.fromJson(x))),
+      genres: List<Demographic>.from(
+          json['genres'].map((x) => Demographic.fromJson(x))),
+      producers: List<Demographic>.from(
+          json['producers'].map((x) => Demographic.fromJson(x))),
+      studios: List<Demographic>.from(
+          json['studios'].map((x) => Demographic.fromJson(x))),
       // List<AnimeModel>.from(jsonDecode(response.body)['data']
       //       .map((x) => AnimeModel.fromJson(x)))
     );
