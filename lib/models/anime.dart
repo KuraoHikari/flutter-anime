@@ -5,9 +5,9 @@ class AnimeModel {
   final int malId; // Unique ID of the anime.
   final String title; // Title of the anime.
   final Images images;
-  final String titleJapanese;
-  final String type;
-  final int episodes;
+  final String? titleJapanese;
+  final String? type;
+  final int? episodes;
   final String? status;
   final String? rating;
   final double score;
@@ -18,6 +18,7 @@ class AnimeModel {
   final String? synopsis;
   final String? background;
   final String? season;
+  final bool airing;
   final int? year;
   final List<Demographic>? genres;
   final List<Demographic>? studios;
@@ -25,6 +26,7 @@ class AnimeModel {
 
   AnimeModel(
       {this.id,
+      required this.airing,
       required this.malId,
       required this.title,
       required this.images,
@@ -61,6 +63,7 @@ class AnimeModel {
       score: json['score'].toDouble(),
       scoredBy: json['scored_by'],
       rank: json['rank'],
+      airing: json['airing'],
       popularity: json['popularity'],
       members: json['members'],
       synopsis: json['synopsis'],

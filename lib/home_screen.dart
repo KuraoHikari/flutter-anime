@@ -1,11 +1,12 @@
 import 'dart:convert';
-import 'package:flutter/foundation.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_scroll_shadow/flutter_scroll_shadow.dart';
 
 import 'package:http/http.dart' as http;
 
 import 'package:jikan_anime/components/cards/vertical_card.dart';
+import 'package:jikan_anime/components/scrollView/horizontal_scroll_view.dart';
 import 'package:jikan_anime/models/anime.dart';
 import 'package:jikan_anime/utils/url_launcher.dart';
 
@@ -201,94 +202,9 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
 
-            if (isLoading)
-              ScrollShadow(
-                color: Colors.black,
-                size: 20,
-                child: SingleChildScrollView(
-                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 20),
-                  scrollDirection: Axis.horizontal,
-                  child: Row(children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: const Color.fromARGB(255, 116, 116, 116)
-                                .withOpacity(0.4),
-                          ),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        constraints:
-                            const BoxConstraints(maxWidth: 150, maxHeight: 210),
-                        child: const SizedBox(
-                          height: 210.0,
-                          width: 150.0,
-                          child: Center(child: CircularProgressIndicator()),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: const Color.fromARGB(255, 116, 116, 116)
-                                .withOpacity(0.4),
-                          ),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        constraints:
-                            const BoxConstraints(maxWidth: 150, maxHeight: 210),
-                        child: const SizedBox(
-                          height: 210.0,
-                          width: 150.0,
-                          child: Center(child: CircularProgressIndicator()),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: const Color.fromARGB(255, 116, 116, 116)
-                                .withOpacity(0.4),
-                          ),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        constraints:
-                            const BoxConstraints(maxWidth: 150, maxHeight: 210),
-                        child: const SizedBox(
-                          height: 210.0,
-                          width: 150.0,
-                          child: Center(child: CircularProgressIndicator()),
-                        ),
-                      ),
-                    ),
-                  ]),
-                ),
-              ),
-            if (!isLoading)
-              ScrollShadow(
-                color: Colors.black,
-                size: 20,
-                child: SingleChildScrollView(
-                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 20),
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: animeList
-                        .map(
-                          (anime) => Padding(
-                            key: anime.id,
-                            padding: const EdgeInsets.all(8),
-                            child: VCard(anime: anime),
-                          ),
-                        )
-                        .toList(),
-                  ),
-                ),
-              ),
+            const HorizontalScrollView(
+              animeUri: "/top/anime",
+            ),
 
             const Padding(
               padding: EdgeInsets.only(top: 0, left: 20, right: 20),
@@ -318,94 +234,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
 
-            if (isLoading)
-              ScrollShadow(
-                color: Colors.black,
-                size: 20,
-                child: SingleChildScrollView(
-                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 20),
-                  scrollDirection: Axis.horizontal,
-                  child: Row(children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: const Color.fromARGB(255, 116, 116, 116)
-                                .withOpacity(0.4),
-                          ),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        constraints:
-                            const BoxConstraints(maxWidth: 150, maxHeight: 210),
-                        child: const SizedBox(
-                          height: 210.0,
-                          width: 150.0,
-                          child: Center(child: CircularProgressIndicator()),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: const Color.fromARGB(255, 116, 116, 116)
-                                .withOpacity(0.4),
-                          ),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        constraints:
-                            const BoxConstraints(maxWidth: 150, maxHeight: 210),
-                        child: const SizedBox(
-                          height: 210.0,
-                          width: 150.0,
-                          child: Center(child: CircularProgressIndicator()),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: const Color.fromARGB(255, 116, 116, 116)
-                                .withOpacity(0.4),
-                          ),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        constraints:
-                            const BoxConstraints(maxWidth: 150, maxHeight: 210),
-                        child: const SizedBox(
-                          height: 210.0,
-                          width: 150.0,
-                          child: Center(child: CircularProgressIndicator()),
-                        ),
-                      ),
-                    ),
-                  ]),
-                ),
-              ),
-            if (!isLoading)
-              ScrollShadow(
-                color: Colors.black,
-                size: 20,
-                child: SingleChildScrollView(
-                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 20),
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: animeList
-                        .map(
-                          (anime) => Padding(
-                            key: anime.id,
-                            padding: const EdgeInsets.all(8),
-                            child: VCard(anime: anime),
-                          ),
-                        )
-                        .toList(),
-                  ),
-                ),
-              ),
+            const HorizontalScrollView(animeUri: "/seasons/now"),
           ],
         ),
       ),

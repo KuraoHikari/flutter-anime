@@ -121,7 +121,7 @@ class DetailScreen extends StatelessWidget {
                   child: SizedBox(
                     width: 200,
                     child: Text(
-                      args.titleJapanese,
+                      args.titleJapanese ?? "",
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                           fontSize: 10,
@@ -154,7 +154,7 @@ class DetailScreen extends StatelessWidget {
                   child: SizedBox(
                     width: 200,
                     child: Text(
-                      '${args.year} ${args.season}',
+                      '${args.year ?? ""} ${args.season ?? ""}',
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                           fontSize: 12,
@@ -165,6 +165,50 @@ class DetailScreen extends StatelessWidget {
                   ),
                 ),
               ),
+              Row(
+                children: [
+                  const Spacer(),
+                  Column(
+                    children: [
+                      Text(
+                        '${args.score}',
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                      const Text(
+                        "Score",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ],
+                  ),
+                  const Spacer(),
+                  Column(
+                    children: [
+                      Text(
+                        '${args.episodes}',
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                      const Text(
+                        "Episodes",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ],
+                  ),
+                  const Spacer(),
+                  Column(
+                    children: [
+                      Text(
+                        '${args.rank ?? ""}',
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                      const Text(
+                        "Rank",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ],
+                  ),
+                  const Spacer(),
+                ],
+              )
             ],
           ),
         ));

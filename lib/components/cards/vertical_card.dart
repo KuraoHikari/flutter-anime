@@ -31,6 +31,7 @@ class _VCardState extends State<VCard> {
               episodes: widget.anime.episodes,
               status: widget.anime.status,
               rating: widget.anime.rating,
+              airing: widget.anime.airing,
               score: widget.anime.score,
               scoredBy: widget.anime.scoredBy,
               rank: widget.anime.rank,
