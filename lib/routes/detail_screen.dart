@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:jikan_anime/components/nestedNavbar/nested_navbar.dart';
 import 'package:jikan_anime/models/anime.dart';
 
 class DetailScreen extends StatelessWidget {
@@ -127,7 +128,7 @@ class DetailScreen extends StatelessWidget {
                           fontSize: 10,
                           fontWeight: FontWeight.w100,
                           fontFamily: "Inter-Regular",
-                          color: Colors.white),
+                          color: Colors.green),
                     ),
                   ),
                 ),
@@ -149,7 +150,7 @@ class DetailScreen extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 8),
+                padding: const EdgeInsets.only(top: 8, bottom: 8),
                 child: Center(
                   child: SizedBox(
                     width: 200,
@@ -160,55 +161,64 @@ class DetailScreen extends StatelessWidget {
                           fontSize: 12,
                           fontWeight: FontWeight.w100,
                           fontFamily: "Inter-Regular",
-                          color: Colors.white),
+                          color: Color.fromRGBO(255, 255, 255, 1)),
                     ),
                   ),
                 ),
               ),
-              Row(
-                children: [
-                  const Spacer(),
-                  Column(
-                    children: [
-                      Text(
-                        '${args.score}',
-                        style: const TextStyle(color: Colors.white),
+              Padding(
+                padding: const EdgeInsets.only(left: 20, right: 20),
+                child: Card(
+                    color: Colors.grey[800]?.withOpacity(0.5),
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 15, top: 15),
+                      child: Row(
+                        children: [
+                          const Spacer(),
+                          Column(
+                            children: [
+                              Text(
+                                '${args.score}',
+                                style: const TextStyle(color: Colors.green),
+                              ),
+                              const Text(
+                                "Score",
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ],
+                          ),
+                          const Spacer(),
+                          Column(
+                            children: [
+                              Text(
+                                '${args.episodes ?? "on going"}',
+                                style: const TextStyle(color: Colors.green),
+                              ),
+                              const Text(
+                                "Episodes",
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ],
+                          ),
+                          const Spacer(),
+                          Column(
+                            children: [
+                              Text(
+                                '${args.rank ?? ""}',
+                                style: const TextStyle(color: Colors.green),
+                              ),
+                              const Text(
+                                "Rank",
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ],
+                          ),
+                          const Spacer(),
+                        ],
                       ),
-                      const Text(
-                        "Score",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ],
-                  ),
-                  const Spacer(),
-                  Column(
-                    children: [
-                      Text(
-                        '${args.episodes}',
-                        style: const TextStyle(color: Colors.white),
-                      ),
-                      const Text(
-                        "Episodes",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ],
-                  ),
-                  const Spacer(),
-                  Column(
-                    children: [
-                      Text(
-                        '${args.rank ?? ""}',
-                        style: const TextStyle(color: Colors.white),
-                      ),
-                      const Text(
-                        "Rank",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ],
-                  ),
-                  const Spacer(),
-                ],
-              )
+                    )),
+              ),
+              // NestedTabBar(),
             ],
           ),
         ));
