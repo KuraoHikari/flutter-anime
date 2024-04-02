@@ -18,36 +18,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<AnimeModel> animeList = [];
-  bool isLoading = true;
-
   @override
   void initState() {
     super.initState();
-    if (mounted) {
-      fetchAnimeData();
-    }
-  }
-
-  // Function to fetch anime data using Jikan API.
-  Future<void> fetchAnimeData() async {
-    final response = await http.get(Uri.parse(
-        'https://api.jikan.moe/v4/top/anime')); // Sending GET request to Jikan API.
-    if (response.statusCode == 200) {
-      // If request is successful, decode JSON response and update animeList.
-      setState(() {
-        animeList = List<AnimeModel>.from(jsonDecode(response.body)['data']
-            .map((x) => AnimeModel.fromJson(x)));
-        isLoading = false;
-      });
-    } else {
-      setState(() {
-        animeList = [];
-        isLoading = false;
-      });
-      throw Exception(
-          'Failed to load anime data'); // Throw exception if request fails.
-    }
   }
 
   @override

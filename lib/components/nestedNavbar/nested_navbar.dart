@@ -1,89 +1,146 @@
 import 'package:flutter/material.dart';
 
-class MyHomePage extends StatefulWidget {
+import 'material_design_indicator.dart';
+
+class NestedTabBar extends StatefulWidget {
+  const NestedTabBar({Key? key}) : super(key: key);
+
   @override
-  _MyHomePageState createState() => new _MyHomePageState();
+  _NestedTabBarState createState() => _NestedTabBarState();
 }
 
-class _MyHomePageState extends State<MyHomePage>
+class _NestedTabBarState extends State<NestedTabBar>
     with SingleTickerProviderStateMixin {
-  late TabController _controller;
+  late TabController _tabController;
+
+  final _selectedColor = Color(0xff1a73e8);
+  final _unselectedColor = Color(0xff5f6368);
+  final _tabs = [
+    Tab(text: 'Tab1'),
+    Tab(text: 'Tab2'),
+    Tab(text: 'Tab3'),
+  ];
+
+  final _iconTabs = [
+    Tab(icon: Icon(Icons.home)),
+    Tab(icon: Icon(Icons.search)),
+    Tab(icon: Icon(Icons.settings)),
+  ];
 
   @override
   void initState() {
+    _tabController = TabController(length: 3, vsync: this);
     super.initState();
-    _controller = new TabController(length: 2, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _tabController.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text('TestProject'),
-      ),
-      body: new ListView(
-        children: <Widget>[
-          new Card(
-            child: new ListTile(
-              title: const Text('Some information'),
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          ///Default Tabbar with full width tabbar indicator
+
+          /// Custom Tabbar with solid selected bg and transparent tabbar bg
+          Container(
+            height: kToolbarHeight - 8.0,
+            decoration: BoxDecoration(
+              color: Colors.grey.shade200,
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+            child: TabBar(
+              controller: _tabController,
+              indicator: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8.0),
+                  color: _selectedColor),
+              labelColor: Colors.white,
+              unselectedLabelColor: Colors.black,
+              tabs: _tabs,
             ),
           ),
-          new Container(
-            decoration:
-                new BoxDecoration(color: Theme.of(context).primaryColor),
-            child: new TabBar(
-              controller: _controller,
-              tabs: [
-                new Tab(
-                  icon: const Icon(Icons.home),
-                  text: 'Address',
-                ),
-                new Tab(
-                  icon: const Icon(Icons.my_location),
-                  text: 'Location',
-                ),
-              ],
+
+          /// Custom Tabbar with solid selected bg and transparent tabbar bg
+          Container(
+            height: kToolbarHeight + 8.0,
+            padding: const EdgeInsets.only(top: 16.0, right: 16.0, left: 16.0),
+            decoration: BoxDecoration(
+              color: _selectedColor,
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(8.0),
+                  topRight: Radius.circular(8.0)),
+            ),
+            child: TabBar(
+              controller: _tabController,
+              indicator: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(8.0),
+                      topRight: Radius.circular(8.0)),
+                  color: Colors.white),
+              labelColor: Colors.black,
+              unselectedLabelColor: Colors.white,
+              tabs: _tabs,
             ),
           ),
-          new Container(
-            height: 80.0,
-            child: new TabBarView(
-              controller: _controller,
-              children: <Widget>[
-                new Card(
-                  child: new ListTile(
-                    leading: const Icon(Icons.home),
-                    title: new TextField(
-                      decoration: const InputDecoration(
-                          hintText: 'Search for address...'),
-                    ),
-                  ),
-                ),
-                new Card(
-                  child: new ListTile(
-                    leading: const Icon(Icons.location_on),
-                    title: new Text('Latitude: 48.09342\nLongitude: 11.23403'),
-                    trailing: new IconButton(
-                        icon: const Icon(Icons.my_location), onPressed: () {}),
-                  ),
-                ),
-              ],
+          Container(
+            height: kToolbarHeight + 8.0,
+            padding: const EdgeInsets.only(top: 16.0, right: 16.0, left: 16.0),
+            decoration: BoxDecoration(
+              color: _selectedColor,
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(8.0),
+                  topRight: Radius.circular(8.0)),
+            ),
+            child: TabBar(
+              controller: _tabController,
+              indicator: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(8.0),
+                      topRight: Radius.circular(8.0)),
+                  color: Colors.white),
+              labelColor: Colors.black,
+              unselectedLabelColor: Colors.white,
+              tabs: _tabs,
             ),
           ),
-          new Card(
-            child: new ListTile(
-              title: const Text('Some more information'),
+          Container(
+            height: kToolbarHeight + 8.0,
+            padding: const EdgeInsets.only(top: 16.0, right: 16.0, left: 16.0),
+            decoration: BoxDecoration(
+              color: _selectedColor,
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(8.0),
+                  topRight: Radius.circular(8.0)),
+            ),
+            child: TabBar(
+              controller: _tabController,
+              indicator: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(8.0),
+                      topRight: Radius.circular(8.0)),
+                  color: Colors.white),
+              labelColor: Colors.black,
+              unselectedLabelColor: Colors.white,
+              tabs: _tabs,
             ),
           ),
-          // new RaisedButton(
-          //   color: Theme.of(context).primaryColor,
-          //   onPressed: () {},
-          //   child: const Text(
-          //     'Search for POIs',
-          //     style: const TextStyle(color: Colors.white),
-          //   ),
-          // ),
-        ],
+
+          /// Custom Tabbar with transparent selected bg and solid selected text
+        ]
+            .map((item) => Column(
+                  /// Added a divider after each item to let the tabbars have room to breathe
+                  children: [
+                    item,
+                    Divider(
+                      color: Colors.transparent,
+                    )
+                  ],
+                ))
+            .toList(),
       ),
     );
   }

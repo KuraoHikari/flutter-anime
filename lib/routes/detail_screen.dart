@@ -204,7 +204,7 @@ class DetailScreen extends StatelessWidget {
                           Column(
                             children: [
                               Text(
-                                '${args.rank ?? ""}',
+                                '${args.rank ?? "Un-ranked"}',
                                 style: const TextStyle(color: Colors.green),
                               ),
                               const Text(
@@ -218,7 +218,9 @@ class DetailScreen extends StatelessWidget {
                       ),
                     )),
               ),
-              // NestedTabBar(),
+
+              // or any other specific height
+              NestedTabBar(),
             ],
           ),
         ));

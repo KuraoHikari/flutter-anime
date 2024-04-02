@@ -10,15 +10,15 @@ class AnimeModel {
   final int? episodes;
   final String? status;
   final String? rating;
-  final double score;
+  final double? score;
   final int? scoredBy;
   final int? rank;
-  final int popularity;
-  final int members;
+  final int? popularity;
+  final int? members;
   final String? synopsis;
   final String? background;
   final String? season;
-  final bool airing;
+  final bool? airing;
   final int? year;
   final List<Demographic>? genres;
   final List<Demographic>? studios;
@@ -60,7 +60,7 @@ class AnimeModel {
       episodes: json['episodes'],
       status: json['status'],
       rating: json['rating'],
-      score: json['score'].toDouble(),
+      score: json['score'] != null ? json['score'].toDouble() : 0,
       scoredBy: json['scored_by'],
       rank: json['rank'],
       airing: json['airing'],
