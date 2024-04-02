@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:jikan_anime/components/nestedNavbar/nested_navbar.dart';
 import 'package:jikan_anime/models/anime.dart';
 
@@ -220,7 +221,7 @@ class DetailScreen extends StatelessWidget {
               ),
 
               // or any other specific height
-              NestedTabBar(),
+              Container(child: NestedTabBar())
             ],
           ),
         ));
