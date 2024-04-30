@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:jikan_anime/models/anime.dart';
 
 import 'material_design_indicator.dart';
 
 class NestedTabBar extends StatefulWidget {
-  const NestedTabBar({Key? key}) : super(key: key);
+  const NestedTabBar({Key? key, required this.anime}) : super(key: key);
+
+  final AnimeModel anime;
 
   @override
   _NestedTabBarState createState() => _NestedTabBarState();
@@ -13,23 +16,16 @@ class _NestedTabBarState extends State<NestedTabBar>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
-  final _selectedColor = Color(0xff1a73e8);
-  final _unselectedColor = Color(0xff5f6368);
-  final _tabs = [
-    Tab(text: 'Tab1'),
-    Tab(text: 'Tab2'),
-    Tab(text: 'Tab3'),
-  ];
+  final _selectedColor = Colors.transparent;
 
-  final _iconTabs = [
-    Tab(icon: Icon(Icons.home)),
-    Tab(icon: Icon(Icons.search)),
-    Tab(icon: Icon(Icons.settings)),
+  final _tabs = [
+    Tab(text: 'Detail'),
+    Tab(text: 'Synopsis'),
   ];
 
   @override
   void initState() {
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: 2, vsync: this);
     super.initState();
   }
 
@@ -56,14 +52,16 @@ class _NestedTabBarState extends State<NestedTabBar>
             child: Column(
               children: [
                 TabBar(
+                  dividerColor: Colors.green,
+                  indicatorColor: Colors.white,
                   controller: _tabController,
                   indicator: BoxDecoration(
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(8.0),
                           topRight: Radius.circular(8.0)),
-                      color: Colors.white),
-                  labelColor: Colors.black,
-                  unselectedLabelColor: Colors.white,
+                      color: Colors.transparent),
+                  labelColor: Colors.green,
+                  unselectedLabelColor: Colors.grey,
                   tabs: _tabs,
                 ),
                 Container(
@@ -72,8 +70,13 @@ class _NestedTabBarState extends State<NestedTabBar>
                     controller: _tabController,
                     children: _tabs.map((Tab tab) {
                       return Center(
-                          child: Text(tab.text ??
-                              "a")); // Replace this with your actual content
+                        child: Text(
+                          tab.text == "Synopsis"
+                              ? widget.anime.synopsis ?? ""
+                              : "",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ); // Replace this with your actual content
                     }).toList(),
                   ),
                 ),

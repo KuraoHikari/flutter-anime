@@ -9,7 +9,7 @@ import 'package:jikan_anime/models/anime.dart';
 class DetailScreen extends StatelessWidget {
   const DetailScreen({super.key});
 
-  static const routeName = '/extractArguments';
+  static const routeName = '/DetailScreen';
 
   @override
   Widget build(BuildContext context) {
@@ -173,55 +173,59 @@ class DetailScreen extends StatelessWidget {
                     color: Colors.grey[800]?.withOpacity(0.5),
                     child: Padding(
                       padding: const EdgeInsets.only(bottom: 15, top: 15),
-                      child: Row(
+                      child: Column(
                         children: [
-                          const Spacer(),
-                          Column(
+                          Row(
                             children: [
-                              Text(
-                                '${args.score}',
-                                style: const TextStyle(color: Colors.green),
+                              const Spacer(),
+                              Column(
+                                children: [
+                                  Text(
+                                    '${args.score}',
+                                    style: const TextStyle(color: Colors.green),
+                                  ),
+                                  const Text(
+                                    "Score",
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                ],
                               ),
-                              const Text(
-                                "Score",
-                                style: TextStyle(color: Colors.white),
+                              const Spacer(),
+                              Column(
+                                children: [
+                                  Text(
+                                    '${args.episodes ?? "on going"}',
+                                    style: const TextStyle(color: Colors.green),
+                                  ),
+                                  const Text(
+                                    "Episodes",
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                ],
                               ),
+                              const Spacer(),
+                              Column(
+                                children: [
+                                  Text(
+                                    '${args.rank ?? "Un-ranked"}',
+                                    style: const TextStyle(color: Colors.green),
+                                  ),
+                                  const Text(
+                                    "Rank",
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                ],
+                              ),
+                              const Spacer(),
                             ],
                           ),
-                          const Spacer(),
-                          Column(
-                            children: [
-                              Text(
-                                '${args.episodes ?? "on going"}',
-                                style: const TextStyle(color: Colors.green),
-                              ),
-                              const Text(
-                                "Episodes",
-                                style: TextStyle(color: Colors.white),
-                              ),
-                            ],
-                          ),
-                          const Spacer(),
-                          Column(
-                            children: [
-                              Text(
-                                '${args.rank ?? "Un-ranked"}',
-                                style: const TextStyle(color: Colors.green),
-                              ),
-                              const Text(
-                                "Rank",
-                                style: TextStyle(color: Colors.white),
-                              ),
-                            ],
-                          ),
-                          const Spacer(),
+                          Container(child: NestedTabBar(anime: args))
                         ],
                       ),
                     )),
               ),
 
               // or any other specific height
-              Container(child: NestedTabBar())
             ],
           ),
         ));
