@@ -85,7 +85,6 @@ class _NestedTabBarState extends State<NestedTabBar>
           ),
         ]
             .map((item) => Column(
-                  /// Added a divider after each item to let the tabbars have room to breathe
                   children: [
                     item,
                     Divider(

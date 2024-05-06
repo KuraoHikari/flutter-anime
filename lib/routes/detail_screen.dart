@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:chip_list/chip_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:jikan_anime/components/nestedNavbar/nested_navbar.dart';
@@ -16,6 +17,9 @@ class DetailScreen extends StatelessWidget {
     // Extract the arguments from the current ModalRoute
     // settings and cast them as ScreenArguments.
     final args = ModalRoute.of(context)!.settings.arguments as AnimeModel;
+
+    final List<String> animeGenre =
+        args.genres!.map((genre) => genre.name).toList();
 
     return Scaffold(
         backgroundColor: Colors.black,
@@ -219,13 +223,36 @@ class DetailScreen extends StatelessWidget {
                               const Spacer(),
                             ],
                           ),
-                          Container(child: NestedTabBar(anime: args))
+                          // not use Nested navbar right now couse bug
+                          // Container(child: NestedTabBar(anime: args))
                         ],
                       ),
                     )),
               ),
-
-              // or any other specific height
+              // show list og genree using chip
+              SingleChildScrollView(
+                padding: const EdgeInsets.fromLTRB(0, 10, 0, 20),
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: animeGenre
+                      .map(
+                        (anime) => Padding(
+                          padding: const EdgeInsets.all(8),
+                          child: Chip(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                            backgroundColor: Colors.black,
+                            label: Text(
+                              anime,
+                              style: const TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ),
+                      )
+                      .toList(),
+                ),
+              ),
             ],
           ),
         ));

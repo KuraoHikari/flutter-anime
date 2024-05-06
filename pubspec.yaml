@@ -38,6 +38,7 @@ dependencies:
   cached_network_image: ^3.3.1
   flutter_scroll_shadow: ^1.2.4
   url_launcher: ^6.2.5
+  chip_list: ^2.4.4+8
 
 dev_dependencies:
   flutter_test:
